@@ -37,10 +37,7 @@ body {
   line-height: 1.7;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
   font-family: 'Outfit', sans-serif;
   color: var(--navy);
   line-height: 1.2;
@@ -482,6 +479,41 @@ img {
 }
 
 /* =========================================
+   FLOATING WHATSAPP BUTTON
+========================================= */
+
+.whatsapp-float {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 20px;
+  background: #25D366;
+  color: #ffffff;
+  border-radius: 50px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.whatsapp-float:hover {
+  background: #128C7E;
+  color: #ffffff;
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.whatsapp-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* =========================================
    MOBILE AND TABLET RESPONSIVENESS
 ========================================= */
 
@@ -570,5 +602,15 @@ img {
 
   .site-nav-links {
     gap: 10px;
+  }
+
+  .whatsapp-float {
+    right: 15px;
+    bottom: 15px;
+    padding: 13px;
+  }
+
+  .whatsapp-float span:last-child {
+    display: none;
   }
 }
