@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import WhatsAppButton from "../components/WhatsAppButton";
 
 export const metadata: Metadata = {
   title: "PIZZO FX | Professional Forex Education",
@@ -29,6 +30,7 @@ export default function RootLayout({
       <body>
         <Navbar />
         {children}
+        <WhatsAppButton />
         <Footer />
       </body>
     </html>
