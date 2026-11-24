@@ -1,19 +1,22 @@
 
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "PIZZO FX | Professional Forex Education",
   description:
-    "Learn, understand and navigate the financial markets with PIZZO FX. Join our trading education community and Storm Market with Pizzo.",
-  applicationName: "PIZZO FX",
+    "PIZZO FX provides professional Forex education, market analysis, trading mentorship and market intelligence.",
   keywords: [
     "PIZZO FX",
-    "Forex education",
-    "Trading education",
-    "Storm Market with Pizzo",
-    "Forex Kenya",
+    "Forex Education",
+    "Forex Trading",
+    "Market Analysis",
+    "Trading Mentorship",
+    "Storm Market With Pizzo",
   ],
+  applicationName: "PIZZO FX",
 };
 
 export default function RootLayout({
@@ -23,7 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
