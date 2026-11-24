@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import Image from "next/image";
 
 const navigationLinks = [
   { label: "Home", href: "/" },
@@ -17,8 +18,19 @@ export default function Navbar() {
   return (
     <header className="site-header">
       <nav className="site-navbar">
-        <Link href="/" className="site-brand">
-          PIZZO <span>FX</span>
+        <Link href="/" className="site-brand" aria-label="PIZZO FX Home">
+          <Image
+            src="/images/pizzo-logo.png"
+            alt="PIZZO FX Logo"
+            width={65}
+            height={65}
+            priority
+            style={{
+              width: "65px",
+              height: "65px",
+              objectFit: "contain",
+            }}
+          />
         </Link>
 
         <div className="site-nav-links">
