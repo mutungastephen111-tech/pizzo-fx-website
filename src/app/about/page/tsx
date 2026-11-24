@@ -1,0 +1,159 @@
+
+export default function AboutPage() {
+  return (
+    <main>
+      <header className="navbar">
+        <a href="/" className="brand">
+          PIZZO <span>FX</span>
+        </a>
+
+        <nav className="nav-links">
+          <a href="/">Home</a>
+          <a href="/courses">Education</a>
+          <a href="/event">Our Event</a>
+          <a href="/contact">Contact</a>
+        </nav>
+
+        <a href="/#services" className="button">
+          Explore Services
+        </a>
+      </header>
+
+      <section className="hero">
+        <div className="hero-content">
+          <p className="eyebrow">ABOUT PIZZO FX</p>
+          <h1>
+            Building
+            <br />
+            Knowledge.
+            <br />
+            <span>Developing Traders.</span>
+          </h1>
+
+          <p className="hero-description">
+            PIZZO FX is a Forex education and market intelligence
+            brand committed to developing informed, disciplined
+            and knowledgeable market participants.
+          </p>
+
+          <div className="hero-actions">
+            <a href="/courses" className="button">
+              Explore Education
+            </a>
+            <a href="/event" className="button">
+              Upcoming Event
+            </a>
+          </div>
+        </div>
+
+        <div className="visual-card">
+          <p>OUR PHILOSOPHY</p>
+          <h2>Knowledge before execution.</h2>
+          <p>
+            We believe that understanding the market is an
+            essential part of developing a structured trading
+            approach.
+          </p>
+          <div className="chart-symbol">PIZZO FX</div>
+        </div>
+      </section>
+
+      <section className="section">
+        <p className="eyebrow">OUR STORY</p>
+        <h2>Education at the centre of trading.</h2>
+        <p>
+          PIZZO FX exists to make financial market education
+          more structured, accessible and practical. Through
+          educational content, market analysis, mentorship
+          initiatives and community engagement, we aim to
+          encourage continuous learning and responsible
+          participation in the markets.
+        </p>
+      </section>
+
+      <section className="section services">
+        <p className="eyebrow">OUR FOUNDATION</p>
+        <h2>What drives PIZZO FX</h2>
+
+        <div className="service-grid">
+          <article className="service-card">
+            <span>01</span>
+            <h3>Our Mission</h3>
+            <p>
+              To provide structured Forex education and market
+              intelligence that supports informed learning and
+              responsible trading decisions.
+            </p>
+          </article>
+
+          <article className="service-card">
+            <span>02</span>
+            <h3>Our Vision</h3>
+            <p>
+              To build a respected trading education community
+              recognised for knowledge, discipline and a
+              commitment to continuous development.
+            </p>
+          </article>
+
+          <article className="service-card">
+            <span>03</span>
+            <h3>Our Values</h3>
+            <p>
+              Knowledge, discipline, patience, integrity,
+              accountability and continuous improvement.
+            </p>
+          </article>
+
+          <article className="service-card">
+            <span>04</span>
+            <h3>Our Approach</h3>
+            <p>
+              We emphasise market understanding, risk awareness,
+              structured analysis and responsible execution.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="section community">
+        <p className="eyebrow">BE PART OF THE JOURNEY</p>
+        <h2>Learn. Trade. Grow.</h2>
+        <p>
+          Connect with PIZZO FX and become part of a community
+          focused on financial market education.
+        </p>
+
+        <div className="hero-actions">
+          <a
+            href="https://wa.me/254753529501"
+            className="button"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Contact PIZZO FX
+          </a>
+
+          <a
+            href="https://whatsapp.com/channel/0029VbDZIxA6hENsCwsti53f"
+            className="button"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Join Our Channel
+          </a>
+        </div>
+      </section>
+
+      <footer className="footer">
+        <a href="/" className="brand">
+          PIZZO <span>FX</span>
+        </a>
+        <p>Learn. Trade. Grow.</p>
+        <p className="copyright">
+          © {new Date().getFullYear()} PIZZO FX. All rights reserved.
+        </p>
+      </footer>
+    </main>
+  );
+}
