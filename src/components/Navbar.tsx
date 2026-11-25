@@ -11,6 +11,7 @@ const navigationLinks = [
   { label: "Analysis", href: "/analysis" },
   { label: "Videos", href: "/videos" },
   { label: "Our Event", href: "/event" },
+  { label: "HFM Broker", href: "/hfm" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -35,7 +36,15 @@ export default function Navbar() {
 
         <div className="site-nav-links">
           {navigationLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
+            <Link
+              key={link.href}
+              href={link.href}
+              style={
+                link.href === "/hfm"
+                  ? { color: "#1769ff", fontWeight: 800 }
+                  : undefined
+              }
+            >
               {link.label}
             </Link>
           ))}
