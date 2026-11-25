@@ -1,49 +1,37 @@
 
-const services = [
-  {
-    number: "01",
-    title: "Forex Education",
-    description:
-      "Build your understanding of the financial markets through structured trading education.",
-  },
-  {
-    number: "02",
-    title: "Market Analysis",
-    description:
-      "Explore market structure, liquidity, institutional positioning and trading opportunities.",
-  },
-  {
-    number: "03",
-    title: "Trading Mentorship",
-    description:
-      "Develop discipline, improve your trading process and learn through guided mentorship.",
-  },
-  {
-    number: "04",
-    title: "Premium Signals",
-    description:
-      "Access trading ideas with clear market reasoning and risk awareness.",
-  },
-];
+"use client";
 
-const eventTopics = [
-  "Delta",
-  "Vega",
-  "Gamma",
-  "Theta",
-  "Beta",
-  "Implied Volatility (IV)",
-  "IV Skew",
-  "Options Chains",
-  "Footprint Charts",
-  "Dealer & Hedger Positioning",
-  "Order Book / Depth of Market",
-  "Trader Protection",
-  "Futures-to-Spot Discrepancy",
-  "Market Timing",
-];
+import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabase";
 
-export default function Home() {
+type Announcement = {
+  id: string;
+  title: string;
+  content: string;
+  announcement_type: string | null;
+  created_at: string;
+};
+
+export default function HomePage() {
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [loadingAnnouncements, setLoadingAnnouncements] = useState(true);
+
+  useEffect(() => {
+    async function loadAnnouncements() {
+      const { data } = await supabase
+        .from("announcements")
+        .select("id, title, content, announcement_type, created_at")
+        .eq("is_published", true)
+        .order("created_at", { ascending: false })
+        .limit(3);
+
+      setAnnouncements((data || []) as Announcement[]);
+      setLoadingAnnouncements(false);
+    }
+
+    loadAnnouncements();
+  }, []);
+
   return (
     <main>
       <header className="navbar">
@@ -52,170 +40,183 @@ export default function Home() {
         </a>
 
         <nav className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#event">Our Event</a>
-          <a href="#contact">Contact</a>
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/courses">Courses</a>
+          <a href="/signals">Signals</a>
+          <a href="/analysis">Analysis</a>
+          <a href="/videos">Videos</a>
+          <a href="/announcements">Updates</a>
+          <a href="/event">Event</a>
+          <a href="/contact">Contact</a>
         </nav>
 
-        <a
-          href="https://wa.me/254753529501"
-          className="button"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Get in Touch
+        <a href="https://wa.me/254753529501" className="button">
+          Get Started
         </a>
       </header>
 
-      <section className="hero" id="home">
+      <section className="hero">
         <div className="hero-content">
           <p className="eyebrow">WELCOME TO PIZZO FX</p>
 
           <h1>
-            Understand the
+            Master the Market.
             <br />
-            Markets. Trade with
-            <br />
-            <span>Purpose.</span>
+            <span>Master Your Edge.</span>
           </h1>
 
           <p className="hero-description">
-            A professional trading education platform focused on
-            market intelligence, structured learning and disciplined
-            decision-making.
+            A professional Forex education and market intelligence
+            platform built around knowledge, discipline, risk management
+            and structured trading development.
           </p>
 
           <div className="hero-actions">
-            <a href="#services" className="button">
-              Explore Our Platform
+            <a href="/courses" className="button">
+              Explore Education
             </a>
 
-            <a href="#event" className="button">
-              Discover Our Event
+            <a href="/about" className="button">
+              Discover PIZZO FX
             </a>
           </div>
-
-          <p className="hero-note">
-            Learn. Analyse. Understand. Grow.
-          </p>
         </div>
 
         <div className="visual-card">
-          <p>THE PIZZO FX APPROACH</p>
-          <h2>Knowledge before execution.</h2>
+          <p>THE PIZZO FX PHILOSOPHY</p>
+          <h2>Market rewards patience, not reactions.</h2>
           <p>
-            Develop a structured understanding of the financial
-            markets through education and market research.
+            Build knowledge. Understand the market. Develop discipline.
+            Never trade without a reason.
           </p>
           <div className="chart-symbol">PIZZO FX</div>
         </div>
       </section>
 
-      <section className="section" id="about">
-        <p className="eyebrow">WHO WE ARE</p>
-        <h2>More than trading. A commitment to understanding.</h2>
-        <p>
-          PIZZO FX is a Forex education and market intelligence
-          platform committed to helping traders develop knowledge,
-          discipline and a structured approach to financial markets.
-          Our focus is on education, analysis and continuous growth.
-        </p>
-      </section>
-
-      <section className="section services" id="services">
+      <section className="section">
         <p className="eyebrow">WHAT WE OFFER</p>
-        <h2>Explore the PIZZO FX ecosystem</h2>
-        <p>
-          Educational resources and services designed to support
-          traders at different stages of their journey.
-        </p>
+        <h2>Develop your trading knowledge.</h2>
 
         <div className="service-grid">
-          {services.map((service) => (
-            <article className="service-card" key={service.number}>
-              <span>{service.number}</span>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-            </article>
-          ))}
+          <a href="/courses" className="service-card">
+            <span>01</span>
+            <h3>Forex Education</h3>
+            <p>
+              Structured learning designed to develop trading knowledge
+              and market understanding.
+            </p>
+          </a>
+
+          <a href="/signals" className="service-card">
+            <span>02</span>
+            <h3>Trading Signals</h3>
+            <p>
+              Explore market setups, trading ideas and structured
+              risk-awareness information.
+            </p>
+          </a>
+
+          <a href="/mentorship" className="service-card">
+            <span>03</span>
+            <h3>Trading Mentorship</h3>
+            <p>
+              Develop discipline, strategy and a more structured
+              approach to trading.
+            </p>
+          </a>
+
+          <a href="/analysis" className="service-card">
+            <span>04</span>
+            <h3>Market Analysis</h3>
+            <p>
+              Explore technical analysis, order flow and options
+              market intelligence.
+            </p>
+          </a>
+
+          <a href="/videos" className="service-card">
+            <span>05</span>
+            <h3>Learning Centre</h3>
+            <p>
+              Access educational videos and practical market lessons.
+            </p>
+          </a>
+
+          <a href="/announcements" className="service-card">
+            <span>06</span>
+            <h3>Official Updates</h3>
+            <p>
+              Stay informed about PIZZO FX activities and announcements.
+            </p>
+          </a>
         </div>
       </section>
 
-      <section className="event-section" id="event">
-        <div className="event-content">
-          <p className="eyebrow">THE NEXT MARKET EXPERIENCE</p>
-          <h2>STORM MARKET WITH PIZZO</h2>
+      <section className="section" id="latest-updates">
+        <p className="eyebrow">LATEST FROM PIZZO FX</p>
+        <h2>Announcements & Updates</h2>
 
-          <p className="event-description">
-            An advanced market intelligence and trading education
-            experience exploring options analytics, order flow,
-            dealer positioning and market timing.
+        {loadingAnnouncements ? (
+          <p>Loading the latest updates...</p>
+        ) : announcements.length === 0 ? (
+          <p>
+            Our latest updates will appear here when published.
           </p>
+        ) : (
+          <div className="service-grid">
+            {announcements.map((item) => (
+              <article className="service-card" key={item.id}>
+                <span>
+                  {(item.announcement_type || "UPDATE").toUpperCase()}
+                </span>
 
-          <div className="event-details">
-            <div>
-              <strong>05 DECEMBER 2026</strong>
-              <span>Saturday</span>
-            </div>
+                <h3>{item.title}</h3>
 
-            <div>
-              <strong>10:30 AM – 5:00 PM</strong>
-              <span>East Africa Time (EAT)</span>
-            </div>
+                <p>{item.content}</p>
 
-            <div>
-              <strong>SARIT CENTRE</strong>
-              <span>Loita Hall, Kenya</span>
-            </div>
-          </div>
-
-          <p className="capacity">
-            Maximum event capacity: 3,500 people
-          </p>
-
-          <p className="registration-note">
-            Registration expresses interest only. It does not
-            guarantee a confirmed seat. Our team will follow up
-            through WhatsApp. No certificates will be issued.
-          </p>
-
-          <a href="/event" className="button">
-            Explore Event & Registration
-          </a>
-        </div>
-
-        <div className="curriculum">
-          <h3>What You Will Explore</h3>
-          <div className="topic-grid">
-            {eventTopics.map((topic) => (
-              <div className="topic" key={topic}>
-                {topic}
-              </div>
+                <small>
+                  {new Date(item.created_at).toLocaleDateString("en-KE")}
+                </small>
+              </article>
             ))}
           </div>
+        )}
+
+        <div className="hero-actions" style={{ marginTop: "25px" }}>
+          <a href="/announcements" className="button">
+            View All Announcements
+          </a>
+        </div>
+      </section>
+
+      <section className="section">
+        <p className="eyebrow">FEATURED EVENT</p>
+        <h2>STORM MARKET WITH PIZZO</h2>
+
+        <p>
+          Join us on 5 December 2026 at SARIT CENTRE, LOITA HALL,
+          for an advanced market intelligence and trading education
+          experience.
+        </p>
+
+        <div className="hero-actions">
+          <a href="/event" className="button">
+            Explore Event & Register
+          </a>
         </div>
       </section>
 
       <section className="section community">
-        <p className="eyebrow">JOIN THE COMMUNITY</p>
-        <h2>Be part of the PIZZO FX community.</h2>
+        <p className="eyebrow">JOIN THE PIZZO FX COMMUNITY</p>
+        <h2>Learn. Trade. Grow.</h2>
+
         <p>
-          Connect with our community for educational updates,
-          market insights and upcoming activities.
+          Connect with our community and take your market education
+          journey further.
         </p>
 
         <div className="hero-actions">
-          <a
-            href="https://wa.me/254753529501"
-            className="button"
-            target="_blank"
-            rel="noreferrer"
-          >
-            WhatsApp Us
-          </a>
-
           <a
             href="https://whatsapp.com/channel/0029VbDZIxA6hENsCwsti53f"
             className="button"
@@ -224,37 +225,19 @@ export default function Home() {
           >
             Join WhatsApp Channel
           </a>
+
+          <a href="/contact" className="button">
+            Contact Us
+          </a>
         </div>
       </section>
 
-      <footer className="footer" id="contact">
-        <div className="footer-brand">
-          <a href="/" className="brand">
-            PIZZO <span>FX</span>
-          </a>
-          <p>Learn. Trade. Grow.</p>
-        </div>
+      <footer className="footer">
+        <a href="/" className="brand">
+          PIZZO <span>FX</span>
+        </a>
 
-        <div className="footer-contact">
-          <h3>Contact PIZZO FX</h3>
-          <p>WhatsApp: +254 753 529501</p>
-          <p>WhatsApp: +254 737 116103</p>
-          <p>TikTok: @pizzo-fx</p>
-
-          <a
-            href="https://register.hfm.com/ke/en/new-live-account/?refid=30371067&acid=m5yg6nl8td"
-            target="_blank"
-            rel="noreferrer"
-          >
-            HFM Account Registration
-          </a>
-        </div>
-
-        <p className="disclaimer">
-          Trading foreign exchange and other financial instruments
-          involves significant risk. Educational content does not
-          constitute financial advice or guarantee trading results.
-        </p>
+        <p>Learn. Trade. Grow.</p>
 
         <p className="copyright">
           © {new Date().getFullYear()} PIZZO FX. All rights reserved.
