@@ -57,7 +57,6 @@ export default function HomePage() {
             <a href="/courses" className="button">
               Explore Education
             </a>
-
             <a href="/about" className="button">
               Discover PIZZO FX
             </a>
@@ -131,6 +130,88 @@ export default function HomePage() {
               Stay informed about PIZZO FX activities and announcements.
             </p>
           </a>
+        </div>
+      </section>
+
+      {/* PREVIOUS PIZZO FX EVENT VIDEO */}
+      <section className="section">
+        <p className="eyebrow">PIZZO FX EXPERIENCES</p>
+        <h2>Moments from Our Previous Event</h2>
+
+        <p style={{ maxWidth: "700px", lineHeight: 1.8 }}>
+          Experience the energy, community and learning moments from
+          a previous PIZZO FX event. We are building a community driven
+          by knowledge, market intelligence and growth.
+        </p>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "35px",
+            flexWrap: "wrap",
+            marginTop: "30px",
+          }}
+        >
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "340px",
+              background: "#071b46",
+              padding: "10px",
+              borderRadius: "20px",
+              boxShadow: "0 15px 40px rgba(7, 27, 70, 0.18)",
+            }}
+          >
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              controls
+              preload="metadata"
+              aria-label="Previous PIZZO FX event highlights"
+              style={{
+                display: "block",
+                width: "100%",
+                aspectRatio: "9 / 16",
+                objectFit: "cover",
+                borderRadius: "13px",
+                background: "#000000",
+              }}
+            >
+              <source
+                src="/videos/pizzo-event.mp4"
+                type="video/mp4"
+              />
+              Your browser does not support HTML video.
+            </video>
+          </div>
+
+          <div style={{ maxWidth: "420px" }}>
+            <h3 style={{ fontSize: "27px", marginBottom: "15px" }}>
+              The PIZZO FX Movement
+            </h3>
+
+            <p style={{ lineHeight: 1.9 }}>
+              Every gathering is an opportunity to exchange ideas,
+              develop understanding and build stronger traders.
+              We believe in continuous learning and responsible
+              participation in the financial markets.
+            </p>
+
+            <a
+              href="/event"
+              className="button"
+              style={{
+                display: "inline-block",
+                marginTop: "20px",
+              }}
+            >
+              Discover Our Next Event
+            </a>
+          </div>
         </div>
       </section>
 
@@ -288,7 +369,6 @@ export default function HomePage() {
                 </span>
 
                 <h3>{item.title}</h3>
-
                 <p>{item.content}</p>
 
                 <small>
