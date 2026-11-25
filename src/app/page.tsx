@@ -16,6 +16,9 @@ export default function HomePage() {
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [loadingAnnouncements, setLoadingAnnouncements] = useState(true);
 
+  const affiliateLink =
+    "https://register.hfm.com/ke/en/new-live-account/?refid=30371067&acid=m5yg6nl8td";
+
   useEffect(() => {
     async function loadAnnouncements() {
       const { data } = await supabase
@@ -34,28 +37,6 @@ export default function HomePage() {
 
   return (
     <main>
-      <header className="navbar">
-        <a href="/" className="brand">
-          PIZZO <span>FX</span>
-        </a>
-
-        <nav className="nav-links">
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/courses">Courses</a>
-          <a href="/signals">Signals</a>
-          <a href="/analysis">Analysis</a>
-          <a href="/videos">Videos</a>
-          <a href="/announcements">Updates</a>
-          <a href="/event">Event</a>
-          <a href="/contact">Contact</a>
-        </nav>
-
-        <a href="https://wa.me/254753529501" className="button">
-          Get Started
-        </a>
-      </header>
-
       <section className="hero">
         <div className="hero-content">
           <p className="eyebrow">WELCOME TO PIZZO FX</p>
@@ -153,6 +134,141 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* HFM PARTNERSHIP ADVERTISEMENT */}
+      <section
+        style={{
+          background: "linear-gradient(135deg, #071b46, #123d83)",
+          color: "#ffffff",
+          padding: "65px 22px",
+          margin: "35px 0",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1050px",
+            margin: "auto",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            alignItems: "center",
+            gap: "35px",
+          }}
+        >
+          <div>
+            <span
+              style={{
+                color: "#8eb8ff",
+                fontWeight: 800,
+                letterSpacing: "2px",
+                fontSize: "13px",
+              }}
+            >
+              PIZZO FX OFFICIAL BROKER PARTNER
+            </span>
+
+            <h2
+              style={{
+                fontSize: "clamp(32px, 5vw, 46px)",
+                margin: "18px 0",
+              }}
+            >
+              Explore Trading with HFM
+            </h2>
+
+            <p style={{ color: "#dbe7ff", lineHeight: 1.9 }}>
+              Discover HFM's trading platforms, available markets and
+              account options. Explore the broker independently and
+              decide whether its services suit your trading needs.
+            </p>
+
+            <div className="hero-actions" style={{ marginTop: "25px" }}>
+              <a
+                href={affiliateLink}
+                target="_blank"
+                rel="noopener noreferrer sponsored"
+                className="button"
+                style={{
+                  background: "#ffffff",
+                  color: "#071b46",
+                  fontWeight: 800,
+                }}
+              >
+                OPEN HFM ACCOUNT →
+              </a>
+
+              <a
+                href="/hfm"
+                className="button"
+                style={{
+                  border: "1px solid #ffffff",
+                  color: "#ffffff",
+                }}
+              >
+                Learn More About HFM
+              </a>
+            </div>
+          </div>
+
+          <div
+            style={{
+              background: "#ffffff",
+              color: "#071b46",
+              padding: "35px",
+              borderRadius: "18px",
+              textAlign: "center",
+            }}
+          >
+            <p
+              style={{
+                color: "#1769ff",
+                fontWeight: 800,
+                letterSpacing: "3px",
+                fontSize: "14px",
+              }}
+            >
+              PIZZO FX × HFM
+            </p>
+
+            <h3 style={{ fontSize: "29px", margin: "18px 0" }}>
+              Your Trading Journey.
+            </h3>
+
+            <p style={{ color: "#64748b", lineHeight: 1.8 }}>
+              Education. Preparation. Risk awareness. Independent
+              trading decisions.
+            </p>
+
+            <a
+              href="/hfm"
+              style={{
+                display: "inline-block",
+                marginTop: "15px",
+                color: "#1769ff",
+                fontWeight: 800,
+                textDecoration: "none",
+              }}
+            >
+              Explore Our Partnership →
+            </a>
+          </div>
+        </div>
+
+        <p
+          style={{
+            maxWidth: "1050px",
+            margin: "35px auto 0",
+            fontSize: "12px",
+            color: "#c6d8f5",
+            lineHeight: 1.8,
+          }}
+        >
+          Affiliate disclosure: PIZZO FX may receive compensation when
+          visitors register through its HFM affiliate link. Trading
+          leveraged financial instruments involves significant risk
+          and may result in the loss of your capital. Review the broker's
+          official terms and risk disclosures before registering.
+        </p>
+      </section>
+
       <section className="section" id="latest-updates">
         <p className="eyebrow">LATEST FROM PIZZO FX</p>
         <h2>Announcements & Updates</h2>
@@ -231,18 +347,6 @@ export default function HomePage() {
           </a>
         </div>
       </section>
-
-      <footer className="footer">
-        <a href="/" className="brand">
-          PIZZO <span>FX</span>
-        </a>
-
-        <p>Learn. Trade. Grow.</p>
-
-        <p className="copyright">
-          © {new Date().getFullYear()} PIZZO FX. All rights reserved.
-        </p>
-      </footer>
     </main>
   );
 }
