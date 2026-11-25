@@ -2,19 +2,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase } from "../../lib/supabase";
+import { supabase } from "@/lib/supabase";
+import FeedbackForm from "@/components/FeedbackForm";
 
 type Feedback = {
   id: string;
   full_name: string;
-  service: string | null;
+  service: string;
   rating: number;
   message: string;
   created_at: string;
 };
 
 export default function FeedbackPage() {
-  const [feedback, setFeedback] = useState<Feedback[]>([]);
+  const [reviews, setReviews] = useState<Feedback[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -27,9 +28,9 @@ export default function FeedbackPage() {
         .order("created_at", { ascending: false });
 
       if (fetchError) {
-        setError("Reviews are temporarily unavailable.");
+        setError("We could not load feedback at the moment.");
       } else {
-        setFeedback((data || []) as Feedback[]);
+        setReviews(data || []);
       }
 
       setLoading(false);
@@ -40,163 +41,163 @@ export default function FeedbackPage() {
 
   return (
     <main>
-      <header className="navbar">
-        <a href="/" className="brand">
-          PIZZO <span>FX</span>
-        </a>
+      <section
+        style={{
+          background: "linear-gradient(135deg, #071b46, #123d83)",
+          color: "#ffffff",
+          padding: "75px 20px",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ maxWidth: "850px", margin: "auto" }}>
+          <span
+            style={{
+              color: "#8eb8ff",
+              fontWeight: 700,
+              letterSpacing: "2px",
+              fontSize: "13px",
+            }}
+          >
+            THE PIZZO FX COMMUNITY
+          </span>
 
-        <nav className="nav-links">
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/courses">Courses</a>
-          <a href="/analysis">Analysis</a>
-          <a href="/videos">Videos</a>
-          <a href="/contact">Contact</a>
-        </nav>
-
-        <a href="https://wa.me/254753529501" className="button">
-          Contact Us
-        </a>
-      </header>
-
-      <section className="hero">
-        <div className="hero-content">
-          <p className="eyebrow">THE PIZZO FX COMMUNITY</p>
-
-          <h1>
-            Real Learning.
-            <br />
-            <span>Shared Experiences.</span>
+          <h1 style={{ fontSize: "clamp(34px, 6vw, 54px)", margin: "18px 0" }}>
+            Real Experiences. Honest Feedback.
           </h1>
 
-          <p className="hero-description">
-            Explore feedback and experiences shared by members
-            of the PIZZO FX learning community.
+          <p
+            style={{
+              color: "#dbe7ff",
+              fontSize: "17px",
+              lineHeight: 1.8,
+              maxWidth: "680px",
+              margin: "auto",
+            }}
+          >
+            Discover what members and learners share about their
+            experiences with PIZZO FX. Your voice helps us keep growing.
           </p>
-
-          <div className="hero-actions">
-            <a href="#reviews" className="button">
-              Explore Reviews
-            </a>
-
-            <a href="/contact" className="button">
-              Get in Touch
-            </a>
-          </div>
-        </div>
-
-        <div className="visual-card">
-          <p>OUR EDUCATION PHILOSOPHY</p>
-          <h2>Progress begins with knowledge and discipline.</h2>
-          <p>
-            We believe in continuous learning, responsible trading
-            and the development of independent market understanding.
-          </p>
-          <div className="chart-symbol">PIZZO FX</div>
         </div>
       </section>
 
-      <section className="section" id="reviews">
-        <p className="eyebrow">COMMUNITY FEEDBACK</p>
-        <h2>Student & Community Reviews</h2>
-
-        <p>
-          Feedback approved for publication by the PIZZO FX team.
-        </p>
+      <section
+        className="section"
+        style={{ maxWidth: "1150px", margin: "auto", padding: "65px 20px" }}
+      >
+        <div className="section-heading" style={{ textAlign: "center" }}>
+          <span className="eyebrow">COMMUNITY VOICES</span>
+          <h2>What People Are Saying</h2>
+          <p>
+            Feedback shared by people who have experienced our community
+            and services.
+          </p>
+        </div>
 
         {loading ? (
-          <p style={{ marginTop: "30px" }}>Loading reviews...</p>
+          <p style={{ textAlign: "center", padding: "35px" }}>
+            Loading feedback...
+          </p>
         ) : error ? (
-          <p style={{ marginTop: "30px" }}>{error}</p>
-        ) : feedback.length === 0 ? (
+          <p style={{ textAlign: "center", color: "#c62828", padding: "35px" }}>
+            {error}
+          </p>
+        ) : reviews.length === 0 ? (
           <div
             style={{
+              textAlign: "center",
+              padding: "40px 20px",
+              background: "#f4f7fc",
+              borderRadius: "16px",
               marginTop: "30px",
-              padding: "30px",
-              background: "#EAF1FF",
-              borderRadius: "14px",
-              color: "#071B46",
             }}
           >
-            <h3>Community reviews are being prepared.</h3>
-            <p>
-              Approved feedback will appear here as it becomes available.
+            <h3>Be among the first to share your experience.</h3>
+            <p style={{ color: "#64748b" }}>
+              Approved community feedback will appear here.
             </p>
           </div>
         ) : (
-          <div className="service-grid" style={{ marginTop: "30px" }}>
-            {feedback.map((item) => (
-              <article className="service-card" key={item.id}>
-                <p
+          <>
+            <p
+              style={{
+                textAlign: "center",
+                color: "#64748b",
+                margin: "25px 0",
+              }}
+            >
+              {reviews.length} published {reviews.length === 1 ? "review" : "reviews"}
+            </p>
+
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+                gap: "22px",
+                marginTop: "25px",
+              }}
+            >
+              {reviews.map((review) => (
+                <article
+                  key={review.id}
                   style={{
-                    color: "#1769FF",
-                    fontSize: "22px",
-                    letterSpacing: "3px",
-                  }}
-                  aria-label={`${item.rating} out of 5 stars`}
-                >
-                  {"★".repeat(item.rating)}
-                  {"☆".repeat(5 - item.rating)}
-                </p>
-
-                <p
-                  style={{
-                    lineHeight: 1.8,
-                    whiteSpace: "pre-wrap",
+                    background: "#ffffff",
+                    border: "1px solid #e1e8f2",
+                    borderRadius: "16px",
+                    padding: "25px",
+                    boxShadow: "0 8px 25px rgba(7, 27, 70, 0.05)",
                   }}
                 >
-                  "{item.message}"
-                </p>
+                  <div
+                    style={{
+                      color: "#f4a900",
+                      fontSize: "20px",
+                      letterSpacing: "3px",
+                    }}
+                    aria-label={`${review.rating} out of 5 stars`}
+                  >
+                    {"★".repeat(review.rating)}
+                    <span style={{ color: "#d7deea" }}>
+                      {"★".repeat(5 - review.rating)}
+                    </span>
+                  </div>
 
-                <h3>{item.full_name}</h3>
+                  <p
+                    style={{
+                      color: "#334155",
+                      lineHeight: 1.8,
+                      margin: "18px 0",
+                      whiteSpace: "pre-wrap",
+                    }}
+                  >
+                    “{review.message}”
+                  </p>
 
-                <p>{item.service || "PIZZO FX Community"}</p>
+                  <div
+                    style={{
+                      borderTop: "1px solid #edf1f7",
+                      paddingTop: "15px",
+                    }}
+                  >
+                    <strong style={{ color: "#071b46" }}>
+                      {review.full_name}
+                    </strong>
 
-                <small>
-                  {new Date(item.created_at).toLocaleDateString("en-KE", {
-                    day: "numeric",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </small>
-              </article>
-            ))}
-          </div>
+                    <p style={{ color: "#64748b", fontSize: "13px", margin: "5px 0" }}>
+                      {review.service}
+                    </p>
+
+                    <small style={{ color: "#94a3b8" }}>
+                      {new Date(review.created_at).toLocaleDateString()}
+                    </small>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </>
         )}
       </section>
 
-      <section className="section">
-        <p className="eyebrow">SHARE YOUR EXPERIENCE</p>
-        <h2>Your feedback matters.</h2>
-
-        <p>
-          Have you interacted with PIZZO FX? Share your experience
-          with our team through WhatsApp.
-        </p>
-
-        <div className="hero-actions">
-          <a
-            href="https://wa.me/254753529501?text=Hello%20PIZZO%20FX%2C%20I%20would%20like%20to%20share%20my%20feedback."
-            className="button"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Share Feedback
-          </a>
-        </div>
-      </section>
-
-      <footer className="footer">
-        <a href="/" className="brand">
-          PIZZO <span>FX</span>
-        </a>
-
-        <p>Learn. Trade. Grow.</p>
-
-        <p className="copyright">
-          © {new Date().getFullYear()} PIZZO FX. All rights reserved.
-        </p>
-      </footer>
+      <FeedbackForm />
     </main>
   );
 }
