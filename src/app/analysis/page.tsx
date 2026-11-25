@@ -1,4 +1,9 @@
 
+"use client";
+
+import { useEffect, useState } from "react";
+import { supabase } from "../../lib/supabase";
+
 const analysisAreas = [
   {
     number: "01",
@@ -26,7 +31,44 @@ const analysisAreas = [
   },
 ];
 
+type Analysis = {
+  id: string;
+  title: string;
+  instrument: string | null;
+  timeframe: string | null;
+  market_bias: string | null;
+  summary: string | null;
+  analysis_content: string | null;
+  created_at: string;
+};
+
 export default function AnalysisPage() {
+  const [analyses, setAnalyses] = useState<Analysis[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function loadAnalyses() {
+      const { data, error: fetchError } = await supabase
+        .from("market_analysis")
+        .select(
+          "id, title, instrument, timeframe, market_bias, summary, analysis_content, created_at"
+        )
+        .eq("is_published", true)
+        .order("created_at", { ascending: false });
+
+      if (fetchError) {
+        setError("Market research is temporarily unavailable.");
+      } else {
+        setAnalyses((data || []) as Analysis[]);
+      }
+
+      setLoading(false);
+    }
+
+    loadAnalyses();
+  }, []);
+
   return (
     <main>
       <header className="navbar">
@@ -58,9 +100,8 @@ export default function AnalysisPage() {
           </h1>
 
           <p className="hero-description">
-            Explore financial market behaviour through
-            technical analysis, order flow, options
-            intelligence and structured market research.
+            Explore financial market behaviour through technical analysis,
+            order flow, options intelligence and structured market research.
           </p>
 
           <div className="hero-actions">
@@ -78,8 +119,8 @@ export default function AnalysisPage() {
           <p>MARKET INTELLIGENCE</p>
           <h2>Never trade without a reason.</h2>
           <p>
-            Understand the evidence, analyse the conditions
-            and respect the risks before making decisions.
+            Understand the evidence, analyse the conditions and respect
+            the risks before making decisions.
           </p>
           <div className="chart-symbol">PIZZO FX</div>
         </div>
@@ -87,13 +128,11 @@ export default function AnalysisPage() {
 
       <section className="section services" id="research">
         <p className="eyebrow">OUR RESEARCH AREAS</p>
-
         <h2>Explore the dimensions of market analysis.</h2>
 
         <p>
-          PIZZO FX focuses on developing a deeper understanding
-          of price behaviour, market participation and
-          financial market information.
+          PIZZO FX focuses on developing a deeper understanding of price
+          behaviour, market participation and financial market information.
         </p>
 
         <div className="service-grid">
@@ -107,16 +146,126 @@ export default function AnalysisPage() {
         </div>
       </section>
 
+      {/* LIVE MARKET RESEARCH FROM SUPABASE */}
+      <section className="section" id="published-analysis">
+        <p className="eyebrow">PIZZO FX RESEARCH DESK</p>
+        <h2>Latest Market Analysis</h2>
+
+        <p>
+          Explore published market research, trading observations and
+          educational market breakdowns from PIZZO FX.
+        </p>
+
+        {loading ? (
+          <p style={{ marginTop: "25px" }}>Loading market research...</p>
+        ) : error ? (
+          <p style={{ marginTop: "25px" }}>{error}</p>
+        ) : analyses.length === 0 ? (
+          <div
+            style={{
+              marginTop: "30px",
+              padding: "30px",
+              borderRadius: "14px",
+              background: "#EAF1FF",
+              color: "#071B46",
+            }}
+          >
+            <h3>No published analysis yet.</h3>
+            <p>
+              New market research from PIZZO FX will appear here once
+              published by the research team.
+            </p>
+          </div>
+        ) : (
+          <div className="service-grid" style={{ marginTop: "30px" }}>
+            {analyses.map((item) => (
+              <article
+                className="service-card"
+                key={item.id}
+                style={{ textAlign: "left" }}
+              >
+                <p
+                  style={{
+                    color: "#1769FF",
+                    fontWeight: 700,
+                    fontSize: "12px",
+                    letterSpacing: "1px",
+                  }}
+                >
+                  {item.instrument || "MARKET RESEARCH"}
+                </p>
+
+                <h3>{item.title}</h3>
+
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "10px",
+                    margin: "12px 0",
+                    fontSize: "13px",
+                    color: "#64748b",
+                  }}
+                >
+                  {item.timeframe && <span>{item.timeframe}</span>}
+                  {item.market_bias && <span>{item.market_bias}</span>}
+                </div>
+
+                {item.summary && <p>{item.summary}</p>}
+
+                {item.analysis_content && (
+                  <details style={{ marginTop: "18px" }}>
+                    <summary
+                      style={{
+                        cursor: "pointer",
+                        color: "#1769FF",
+                        fontWeight: 700,
+                      }}
+                    >
+                      Read Full Analysis
+                    </summary>
+
+                    <p
+                      style={{
+                        whiteSpace: "pre-wrap",
+                        lineHeight: 1.8,
+                        marginTop: "15px",
+                      }}
+                    >
+                      {item.analysis_content}
+                    </p>
+                  </details>
+                )}
+
+                <p
+                  style={{
+                    marginTop: "20px",
+                    fontSize: "12px",
+                    color: "#64748b",
+                  }}
+                >
+                  Published:{" "}
+                  {new Date(item.created_at).toLocaleDateString("en-KE", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })}
+                </p>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
+
       <section className="section">
         <p className="eyebrow">STORM MARKET WITH PIZZO</p>
 
         <h2>Go beyond conventional chart analysis.</h2>
 
         <p>
-          Explore advanced market intelligence concepts
-          including Delta, Vega, Gamma, Theta, Implied
-          Volatility, IV Skew, Options Chains, Footprint
-          Charts and Dealer & Hedger Positioning.
+          Explore advanced market intelligence concepts including Delta,
+          Vega, Gamma, Theta, Implied Volatility, IV Skew, Options Chains,
+          Footprint Charts and Dealer & Hedger Positioning.
         </p>
 
         <div className="hero-actions" style={{ marginTop: "25px" }}>
@@ -132,8 +281,8 @@ export default function AnalysisPage() {
         <h2>Knowledge creates better questions.</h2>
 
         <p>
-          Follow our educational activities and contact
-          PIZZO FX for market research and learning enquiries.
+          Follow our educational activities and contact PIZZO FX for
+          market research and learning enquiries.
         </p>
 
         <div className="hero-actions">
@@ -165,9 +314,9 @@ export default function AnalysisPage() {
         <p>Learn. Trade. Grow.</p>
 
         <p className="disclaimer">
-          Market analysis is educational and informational.
-          It is not a guarantee of future performance or
-          financial advice. Trading involves significant risk.
+          Market analysis is educational and informational. It is not
+          a guarantee of future performance or financial advice.
+          Trading involves significant risk.
         </p>
 
         <p className="copyright">
