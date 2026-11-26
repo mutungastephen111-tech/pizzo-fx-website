@@ -21,10 +21,15 @@ function getEmbedUrl(url: string) {
 
     if (host === "youtu.be") {
       const id = parsed.pathname.split("/").filter(Boolean)[0];
-      return id ? `https://www.youtube-nocookie.com/embed/${id}` : null;
+      return id
+        ? `https://www.youtube-nocookie.com/embed/${id}`
+        : null;
     }
 
-    if (host === "youtube.com" || host === "m.youtube.com") {
+    if (
+      host === "youtube.com" ||
+      host === "m.youtube.com"
+    ) {
       if (parsed.pathname === "/watch") {
         const id = parsed.searchParams.get("v");
         return id
@@ -32,7 +37,9 @@ function getEmbedUrl(url: string) {
           : null;
       }
 
-      const match = parsed.pathname.match(/^\/(embed|shorts)\/([^/]+)/);
+      const match = parsed.pathname.match(
+        /^\/(embed|shorts)\/([^/]+)/
+      );
 
       return match
         ? `https://www.youtube-nocookie.com/embed/${match[2]}`
@@ -41,6 +48,7 @@ function getEmbedUrl(url: string) {
 
     if (host === "vimeo.com") {
       const id = parsed.pathname.split("/").filter(Boolean)[0];
+
       return id && /^\d+$/.test(id)
         ? `https://player.vimeo.com/video/${id}`
         : null;
@@ -49,6 +57,15 @@ function getEmbedUrl(url: string) {
     return null;
   } catch {
     return null;
+  }
+}
+
+function isDirectVideo(url: string) {
+  try {
+    const parsed = new URL(url);
+    return /\.(mp4|webm|ogg)$/i.test(parsed.pathname);
+  } catch {
+    return false;
   }
 }
 
@@ -68,7 +85,9 @@ export default function VideosPage() {
         .order("created_at", { ascending: false });
 
       if (fetchError) {
-        setError("The video library is temporarily unavailable.");
+        setError(
+          "The video library is temporarily unavailable."
+        );
       } else {
         setVideos((data || []) as Video[]);
       }
@@ -81,24 +100,6 @@ export default function VideosPage() {
 
   return (
     <main>
-      <header className="navbar">
-        <a href="/" className="brand">
-          PIZZO <span>FX</span>
-        </a>
-
-        <nav className="nav-links">
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/courses">Education</a>
-          <a href="/analysis">Analysis</a>
-          <a href="/event">Our Event</a>
-        </nav>
-
-        <a href="https://wa.me/254753529501" className="button">
-          Contact Us
-        </a>
-      </header>
-
       <section className="hero">
         <div className="hero-content">
           <p className="eyebrow">PIZZO FX LEARNING CENTRE</p>
@@ -147,7 +148,9 @@ export default function VideosPage() {
         </p>
 
         {loading ? (
-          <p style={{ marginTop: "30px" }}>Loading videos...</p>
+          <p style={{ marginTop: "30px" }}>
+            Loading videos...
+          </p>
         ) : error ? (
           <p style={{ marginTop: "30px" }}>{error}</p>
         ) : videos.length === 0 ? (
@@ -170,6 +173,7 @@ export default function VideosPage() {
           <div className="service-grid" style={{ marginTop: "30px" }}>
             {videos.map((video) => {
               const embedUrl = getEmbedUrl(video.video_url);
+              const directVideo = isDirectVideo(video.video_url);
 
               return (
                 <article
@@ -203,6 +207,25 @@ export default function VideosPage() {
                         }}
                       />
                     </div>
+                  ) : directVideo ? (
+                    <video
+                      controls
+                      playsInline
+                      preload="metadata"
+                      poster={video.thumbnail_url || undefined}
+                      style={{
+                        display: "block",
+                        width: "100%",
+                        aspectRatio: "16 / 9",
+                        marginBottom: "18px",
+                        borderRadius: "10px",
+                        background: "#071B46",
+                        objectFit: "contain",
+                      }}
+                    >
+                      <source src={video.video_url} />
+                      Your browser does not support HTML video.
+                    </video>
                   ) : (
                     <div
                       style={{
@@ -254,9 +277,11 @@ export default function VideosPage() {
 
                   <h3>{video.title}</h3>
 
-                  {video.description && <p>{video.description}</p>}
+                  {video.description && (
+                    <p>{video.description}</p>
+                  )}
 
-                  {!embedUrl && (
+                  {!embedUrl && !directVideo && (
                     <a
                       href={video.video_url}
                       target="_blank"
@@ -275,7 +300,9 @@ export default function VideosPage() {
                     }}
                   >
                     Published:{" "}
-                    {new Date(video.created_at).toLocaleDateString("en-KE")}
+                    {new Date(video.created_at).toLocaleDateString(
+                      "en-KE"
+                    )}
                   </p>
                 </article>
               );
@@ -303,18 +330,6 @@ export default function VideosPage() {
           </a>
         </div>
       </section>
-
-      <footer className="footer">
-        <a href="/" className="brand">
-          PIZZO <span>FX</span>
-        </a>
-
-        <p>Learn. Trade. Grow.</p>
-
-        <p className="copyright">
-          © {new Date().getFullYear()} PIZZO FX. All rights reserved.
-        </p>
-      </footer>
     </main>
   );
 }
