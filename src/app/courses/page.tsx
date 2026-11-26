@@ -61,24 +61,6 @@ const courses = [
 export default function CoursesPage() {
   return (
     <main>
-      <header className="navbar">
-        <a href="/" className="brand">
-          PIZZO <span>FX</span>
-        </a>
-
-        <nav className="nav-links">
-          <a href="/">Home</a>
-          <a href="/about">About</a>
-          <a href="/courses">Education</a>
-          <a href="/event">Our Event</a>
-          <a href="/contact">Contact</a>
-        </nav>
-
-        <a href="https://wa.me/254753529501" className="button">
-          Enquire Now
-        </a>
-      </header>
-
       <section className="hero">
         <div className="hero-content">
           <p className="eyebrow">PIZZO FX EDUCATION</p>
@@ -129,7 +111,9 @@ export default function CoursesPage() {
         <div className="service-grid">
           {courses.map((course) => (
             <article className="service-card" key={course.number}>
-              <span>{course.number} · {course.level}</span>
+              <span>
+                {course.number} · {course.level}
+              </span>
 
               <h3>{course.title}</h3>
 
@@ -189,18 +173,6 @@ export default function CoursesPage() {
           </a>
         </div>
       </section>
-
-      <footer className="footer">
-        <a href="/" className="brand">
-          PIZZO <span>FX</span>
-        </a>
-
-        <p>Learn. Trade. Grow.</p>
-
-        <p className="copyright">
-          © {new Date().getFullYear()} PIZZO FX. All rights reserved.
-        </p>
-      </footer>
     </main>
   );
 }
