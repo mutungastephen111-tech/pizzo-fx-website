@@ -4,7 +4,6 @@ import Image from "next/image";
 
 const navigationLinks = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
   { label: "Courses", href: "/courses" },
   { label: "Signals", href: "/signals" },
   { label: "Mentorship", href: "/mentorship" },
@@ -12,6 +11,7 @@ const navigationLinks = [
   { label: "Videos", href: "/videos" },
   { label: "Our Event", href: "/event" },
   { label: "HFM Broker", href: "/hfm" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
