@@ -8,10 +8,8 @@ const navigationLinks = [
   { label: "Signals", href: "/signals" },
   { label: "Mentorship", href: "/mentorship" },
   { label: "Analysis", href: "/analysis" },
-  { label: "Videos", href: "/videos" },
   { label: "Our Event", href: "/event" },
   { label: "HFM Broker", href: "/hfm" },
-  { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
 
