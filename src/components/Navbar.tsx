@@ -8,7 +8,7 @@ const navigationLinks = [
   { label: "Signals", href: "/signals" },
   { label: "Mentorship", href: "/mentorship" },
   { label: "Analysis", href: "/analysis" },
-  { label: "Our Event", href: "/event" },
+  { label: "Our Event", href: "/storm-market" },
   { label: "HFM Broker", href: "/hfm" },
   { label: "Contact", href: "/contact" },
 ];
@@ -40,7 +40,9 @@ export default function Navbar() {
               style={
                 link.href === "/hfm"
                   ? { color: "#1769ff", fontWeight: 800 }
-                  : undefined
+                  : link.href === "/storm-market"
+                    ? { color: "#FF0000", fontWeight: 900 }
+                    : undefined
               }
             >
               {link.label}
@@ -48,7 +50,15 @@ export default function Navbar() {
           ))}
         </div>
 
-        <Link href="/event" className="site-nav-cta">
+        <Link
+          href="/storm-market"
+          className="site-nav-cta"
+          style={{
+            backgroundColor: "#FF0000",
+            borderColor: "#FF0000",
+            color: "#FFFFFF",
+          }}
+        >
           Join Our Event
         </Link>
       </nav>
