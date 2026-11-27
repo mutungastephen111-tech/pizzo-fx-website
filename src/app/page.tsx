@@ -35,6 +35,26 @@ export default function HomePage() {
     loadAnnouncements();
   }, []);
 
+  const featuredCardStyle = {
+    borderRadius: "18px",
+    padding: "30px",
+    minHeight: "330px",
+    display: "flex",
+    flexDirection: "column" as const,
+    justifyContent: "space-between",
+    boxShadow: "0 15px 40px rgba(0,0,0,0.18)",
+  };
+
+  const featuredButtonStyle = {
+    display: "inline-block",
+    padding: "13px 20px",
+    borderRadius: "8px",
+    textDecoration: "none",
+    fontWeight: 900,
+    textAlign: "center" as const,
+    marginTop: "18px",
+  };
+
   return (
     <main>
       {/* HERO */}
@@ -72,6 +92,292 @@ export default function HomePage() {
             Never trade without a reason.
           </p>
           <div className="chart-symbol">PIZZO FX</div>
+        </div>
+      </section>
+
+      {/* THREE FEATURED HOMEPAGE SECTIONS */}
+      <section
+        style={{
+          padding: "65px 22px",
+          background: "#f1f5fb",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            textAlign: "center",
+          }}
+        >
+          <p
+            style={{
+              color: "#1769ff",
+              fontWeight: 900,
+              letterSpacing: "3px",
+              fontSize: "13px",
+            }}
+          >
+            DISCOVER PIZZO FX
+          </p>
+
+          <h2
+            style={{
+              color: "#071b46",
+              fontSize: "clamp(28px, 4vw, 40px)",
+              margin: "12px 0 35px",
+              fontWeight: 900,
+            }}
+          >
+            Explore. Learn. Trade. Grow.
+          </h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "25px",
+              textAlign: "left",
+            }}
+          >
+            {/* STORM MARKET */}
+            <article
+              style={{
+                ...featuredCardStyle,
+                background: "linear-gradient(145deg, #071b46, #123d83)",
+                color: "#ffffff",
+                borderTop: "6px solid #FF0000",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    color: "#ff6666",
+                    fontSize: "13px",
+                    fontWeight: 900,
+                    letterSpacing: "2px",
+                    marginBottom: "16px",
+                  }}
+                >
+                  UPCOMING PIZZO FX EVENT
+                </p>
+
+                <h2
+                  style={{
+                    color: "#FF0000",
+                    fontSize: "clamp(25px, 3vw, 32px)",
+                    fontWeight: 900,
+                    lineHeight: 1.2,
+                    marginBottom: "18px",
+                  }}
+                >
+                  STORM MARKET WITH PIZZO
+                </h2>
+
+                <p style={{ color: "#ffffff", lineHeight: 1.8 }}>
+                  An advanced market intelligence and trading education
+                  experience. Join the PIZZO FX community for a day of
+                  learning and market insights.
+                </p>
+
+                <p
+                  style={{
+                    color: "#ffffff",
+                    fontWeight: 800,
+                    lineHeight: 1.8,
+                    marginTop: "16px",
+                  }}
+                >
+                  5 December 2026
+                  <br />
+                  SARIT CENTRE, LOITA HALL
+                  <br />
+                  10:30 AM – 5:00 PM EAT
+                </p>
+              </div>
+
+              <a
+                href="/storm-market"
+                style={{
+                  ...featuredButtonStyle,
+                  background: "#FF0000",
+                  color: "#ffffff",
+                }}
+              >
+                VIEW EVENT & REGISTER →
+              </a>
+            </article>
+
+            {/* HFM */}
+            <article
+              style={{
+                ...featuredCardStyle,
+                background: "linear-gradient(145deg, #092c67, #1769ff)",
+                color: "#ffffff",
+                borderTop: "6px solid #ffffff",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    color: "#ffffff",
+                    fontSize: "13px",
+                    fontWeight: 900,
+                    letterSpacing: "2px",
+                    marginBottom: "16px",
+                  }}
+                >
+                  PIZZO FX OFFICIAL BROKER PARTNER
+                </p>
+
+                <h2
+                  style={{
+                    color: "#ffffff",
+                    fontSize: "clamp(25px, 3vw, 32px)",
+                    fontWeight: 900,
+                    lineHeight: 1.2,
+                    marginBottom: "18px",
+                  }}
+                >
+                  EXPLORE MARKET WITH HFM
+                </h2>
+
+                <p style={{ color: "#ffffff", lineHeight: 1.8 }}>
+                  Discover HFM's trading platforms, available markets
+                  and account options. Explore the broker independently
+                  and decide whether its services suit your trading needs.
+                </p>
+
+                <p
+                  style={{
+                    color: "#ffffff",
+                    fontWeight: 800,
+                    marginTop: "16px",
+                  }}
+                >
+                  PIZZO FX × HFM
+                </p>
+              </div>
+
+              <div>
+                <a
+                  href={affiliateLink}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  style={{
+                    ...featuredButtonStyle,
+                    background: "#ffffff",
+                    color: "#071b46",
+                    display: "block",
+                  }}
+                >
+                  OPEN HFM ACCOUNT →
+                </a>
+
+                <a
+                  href="/hfm"
+                  style={{
+                    ...featuredButtonStyle,
+                    border: "1px solid #ffffff",
+                    color: "#ffffff",
+                    display: "block",
+                  }}
+                >
+                  LEARN MORE ABOUT HFM
+                </a>
+              </div>
+            </article>
+
+            {/* TRADING SIGNALS AND MARKET INSIGHTS */}
+            <article
+              style={{
+                ...featuredCardStyle,
+                background: "#ffffff",
+                color: "#071b46",
+                borderTop: "6px solid #FF0000",
+              }}
+            >
+              <div>
+                <p
+                  style={{
+                    color: "#1769ff",
+                    fontSize: "13px",
+                    fontWeight: 900,
+                    letterSpacing: "2px",
+                    marginBottom: "16px",
+                  }}
+                >
+                  MARKET INTELLIGENCE
+                </p>
+
+                <h2
+                  style={{
+                    color: "#FF0000",
+                    fontSize: "clamp(25px, 3vw, 32px)",
+                    fontWeight: 900,
+                    lineHeight: 1.2,
+                    marginBottom: "18px",
+                  }}
+                >
+                  TRADING SIGNALS AND MARKET INSIGHTS
+                </h2>
+
+                <p style={{ color: "#334155", lineHeight: 1.8 }}>
+                  Explore trading setups, market analysis and
+                  educational insights. Develop a deeper understanding
+                  of price action, market structure and trading risk.
+                </p>
+
+                <p
+                  style={{
+                    color: "#071b46",
+                    fontWeight: 800,
+                    marginTop: "16px",
+                  }}
+                >
+                  Knowledge. Analysis. Discipline.
+                </p>
+              </div>
+
+              <div>
+                <a
+                  href="/signals"
+                  style={{
+                    ...featuredButtonStyle,
+                    background: "#FF0000",
+                    color: "#ffffff",
+                    display: "block",
+                  }}
+                >
+                  EXPLORE TRADING SIGNALS →
+                </a>
+
+                <a
+                  href="/analysis"
+                  style={{
+                    ...featuredButtonStyle,
+                    background: "#071b46",
+                    color: "#ffffff",
+                    display: "block",
+                  }}
+                >
+                  VIEW MARKET INSIGHTS →
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <p
+            style={{
+              color: "#64748b",
+              fontSize: "12px",
+              lineHeight: 1.8,
+              marginTop: "25px",
+            }}
+          >
+            Trading involves risk. Educational information and trading
+            ideas are not guarantees of profit. PIZZO FX may receive
+            compensation when visitors register through its HFM affiliate link.
+          </p>
         </div>
       </section>
 
@@ -206,141 +512,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* HFM PARTNERSHIP */}
-      <section
-        style={{
-          background: "linear-gradient(135deg, #071b46, #123d83)",
-          color: "#ffffff",
-          padding: "65px 22px",
-          margin: "35px 0",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1050px",
-            margin: "auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            alignItems: "center",
-            gap: "35px",
-          }}
-        >
-          <div>
-            <span
-              style={{
-                color: "#8eb8ff",
-                fontWeight: 800,
-                letterSpacing: "2px",
-                fontSize: "13px",
-              }}
-            >
-              PIZZO FX OFFICIAL BROKER PARTNER
-            </span>
-
-            <h2
-              style={{
-                fontSize: "clamp(32px, 5vw, 46px)",
-                margin: "18px 0",
-              }}
-            >
-              Explore Trading with HFM
-            </h2>
-
-            <p style={{ color: "#dbe7ff", lineHeight: 1.9 }}>
-              Discover HFM's trading platforms, available markets and
-              account options. Explore the broker independently and
-              decide whether its services suit your trading needs.
-            </p>
-
-            <div className="hero-actions" style={{ marginTop: "25px" }}>
-              <a
-                href={affiliateLink}
-                target="_blank"
-                rel="noopener noreferrer sponsored"
-                className="button"
-                style={{
-                  background: "#ffffff",
-                  color: "#071b46",
-                  fontWeight: 800,
-                }}
-              >
-                OPEN HFM ACCOUNT →
-              </a>
-
-              <a
-                href="/hfm"
-                className="button"
-                style={{
-                  border: "1px solid #ffffff",
-                  color: "#ffffff",
-                }}
-              >
-                Learn More About HFM
-              </a>
-            </div>
-          </div>
-
-          <div
-            style={{
-              background: "#ffffff",
-              color: "#071b46",
-              padding: "35px",
-              borderRadius: "18px",
-              textAlign: "center",
-            }}
-          >
-            <p
-              style={{
-                color: "#1769ff",
-                fontWeight: 800,
-                letterSpacing: "3px",
-                fontSize: "14px",
-              }}
-            >
-              PIZZO FX × HFM
-            </p>
-
-            <h3 style={{ fontSize: "29px", margin: "18px 0" }}>
-              Your Trading Journey.
-            </h3>
-
-            <p style={{ color: "#64748b", lineHeight: 1.8 }}>
-              Education. Preparation. Risk awareness. Independent
-              trading decisions.
-            </p>
-
-            <a
-              href="/hfm"
-              style={{
-                display: "inline-block",
-                marginTop: "15px",
-                color: "#1769ff",
-                fontWeight: 800,
-                textDecoration: "none",
-              }}
-            >
-              Explore Our Partnership →
-            </a>
-          </div>
-        </div>
-
-        <p
-          style={{
-            maxWidth: "1050px",
-            margin: "35px auto 0",
-            fontSize: "12px",
-            color: "#c6d8f5",
-            lineHeight: 1.8,
-          }}
-        >
-          Affiliate disclosure: PIZZO FX may receive compensation when
-          visitors register through its HFM affiliate link. Trading
-          leveraged financial instruments involves significant risk
-          and may result in the loss of your capital. Review the broker's
-          official terms and risk disclosures before registering.
-        </p>
-      </section>
-
       {/* ANNOUNCEMENTS */}
       <section className="section" id="latest-updates">
         <p className="eyebrow">LATEST FROM PIZZO FX</p>
@@ -376,69 +547,6 @@ export default function HomePage() {
             View All Announcements
           </a>
         </div>
-      </section>
-
-      {/* FEATURED STORM MARKET EVENT */}
-      <section
-        style={{
-          background: "linear-gradient(135deg, #071b46, #1769ff)",
-          color: "#ffffff",
-          padding: "65px 25px",
-          margin: "45px 0",
-          borderRadius: "20px",
-          textAlign: "center",
-        }}
-      >
-        <p
-          style={{
-            color: "#a9caff",
-            fontWeight: 900,
-            letterSpacing: "3px",
-          }}
-        >
-          UPCOMING PIZZO FX EVENT
-        </p>
-
-        <h2
-          style={{
-            fontSize: "clamp(32px, 6vw, 52px)",
-            margin: "18px 0",
-          }}
-        >
-          STORM MARKET WITH PIZZO
-        </h2>
-
-        <p style={{ lineHeight: 1.9, color: "#e4edff" }}>
-          An advanced market intelligence and trading education
-          experience. Join us on 5 December 2026 at SARIT CENTRE,
-          LOITA HALL, from 10:30 AM to 5:00 PM EAT.
-        </p>
-
-        <p
-          style={{
-            fontSize: "17px",
-            fontWeight: 800,
-            margin: "20px 0",
-          }}
-        >
-          Maximum capacity: 3,500 participants
-        </p>
-
-        <a
-          href="/storm-market"
-          style={{
-            display: "inline-block",
-            background: "#ffffff",
-            color: "#071b46",
-            padding: "16px 30px",
-            borderRadius: "9px",
-            textDecoration: "none",
-            fontWeight: 900,
-            marginTop: "12px",
-          }}
-        >
-          VIEW EVENT & REGISTER →
-        </a>
       </section>
 
       {/* COMMUNITY */}
