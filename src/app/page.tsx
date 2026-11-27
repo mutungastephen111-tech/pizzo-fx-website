@@ -37,6 +37,7 @@ export default function HomePage() {
 
   return (
     <main>
+      {/* HERO */}
       <section className="hero">
         <div className="hero-content">
           <p className="eyebrow">WELCOME TO PIZZO FX</p>
@@ -74,6 +75,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* SERVICES */}
       <section className="section">
         <p className="eyebrow">WHAT WE OFFER</p>
         <h2>Develop your trading knowledge.</h2>
@@ -133,7 +135,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PREVIOUS PIZZO FX EVENT VIDEO */}
+      {/* PREVIOUS EVENT VIDEO */}
       <section className="section">
         <p className="eyebrow">PIZZO FX EXPERIENCES</p>
         <h2>Moments from Our Previous Event</h2>
@@ -200,22 +202,11 @@ export default function HomePage() {
               We believe in continuous learning and responsible
               participation in the financial markets.
             </p>
-
-            <a
-              href="/event"
-              className="button"
-              style={{
-                display: "inline-block",
-                marginTop: "20px",
-              }}
-            >
-              Discover Our Next Event
-            </a>
           </div>
         </div>
       </section>
 
-      {/* HFM PARTNERSHIP ADVERTISEMENT */}
+      {/* HFM PARTNERSHIP */}
       <section
         style={{
           background: "linear-gradient(135deg, #071b46, #123d83)",
@@ -350,6 +341,7 @@ export default function HomePage() {
         </p>
       </section>
 
+      {/* ANNOUNCEMENTS */}
       <section className="section" id="latest-updates">
         <p className="eyebrow">LATEST FROM PIZZO FX</p>
         <h2>Announcements & Updates</h2>
@@ -386,23 +378,70 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section">
-        <p className="eyebrow">FEATURED EVENT</p>
-        <h2>STORM MARKET WITH PIZZO</h2>
-
-        <p>
-          Join us on 5 December 2026 at SARIT CENTRE, LOITA HALL,
-          for an advanced market intelligence and trading education
-          experience.
+      {/* FEATURED STORM MARKET EVENT */}
+      <section
+        style={{
+          background: "linear-gradient(135deg, #071b46, #1769ff)",
+          color: "#ffffff",
+          padding: "65px 25px",
+          margin: "45px 0",
+          borderRadius: "20px",
+          textAlign: "center",
+        }}
+      >
+        <p
+          style={{
+            color: "#a9caff",
+            fontWeight: 900,
+            letterSpacing: "3px",
+          }}
+        >
+          UPCOMING PIZZO FX EVENT
         </p>
 
-        <div className="hero-actions">
-          <a href="/event" className="button">
-            Explore Event & Register
-          </a>
-        </div>
+        <h2
+          style={{
+            fontSize: "clamp(32px, 6vw, 52px)",
+            margin: "18px 0",
+          }}
+        >
+          STORM MARKET WITH PIZZO
+        </h2>
+
+        <p style={{ lineHeight: 1.9, color: "#e4edff" }}>
+          An advanced market intelligence and trading education
+          experience. Join us on 5 December 2026 at SARIT CENTRE,
+          LOITA HALL, from 10:30 AM to 5:00 PM EAT.
+        </p>
+
+        <p
+          style={{
+            fontSize: "17px",
+            fontWeight: 800,
+            margin: "20px 0",
+          }}
+        >
+          Maximum capacity: 3,500 participants
+        </p>
+
+        <a
+          href="/storm-market"
+          style={{
+            display: "inline-block",
+            background: "#ffffff",
+            color: "#071b46",
+            padding: "16px 30px",
+            borderRadius: "9px",
+            textDecoration: "none",
+            fontWeight: 900,
+            marginTop: "12px",
+          }}
+        >
+          VIEW EVENT & REGISTER →
+        </a>
       </section>
 
+      {/* COMMUNITY */}
       <section className="section community">
         <p className="eyebrow">JOIN THE PIZZO FX COMMUNITY</p>
         <h2>Learn. Trade. Grow.</h2>
